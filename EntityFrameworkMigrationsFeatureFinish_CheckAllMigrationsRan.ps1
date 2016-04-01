@@ -1,9 +1,11 @@
 ﻿cls 
 
+$migrationFolder = "C:\work\slate.iva\src\Slate.Iva.Data\Migrations"
+$database = "SlateIva"
 
-cd C:\work\slate.iva\src\Slate.Iva.Data\Migrations
+cd $migrationFolder
 
-$branchMigrations = ls C:\work\slate.iva\src\Slate.Iva.Data\Migrations -Name #all files
+$branchMigrations = ls $migrationFolder -Name #all files
 $branchMigrations = $branchMigrations -like "*_*.cs" -notlike "*.Designer.cs" #all .cs files
 
 $latestBranchMigration = $branchMigrations | Select-Object -Last 1
@@ -47,7 +49,6 @@ if($branchMigrations.Length -ne $devMigrations.Length){
 
 function Invoke-SQL {
     $dataSource = ".";
-    $database = "SlateIva";
     $sqlCommand = "SELECT count(*) as MigrationCount from dbo.__MigrationHistory";
 
     $connectionString = "Data Source=$dataSource; " +
