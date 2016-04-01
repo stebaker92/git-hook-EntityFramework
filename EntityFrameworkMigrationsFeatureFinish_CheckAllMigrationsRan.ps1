@@ -27,7 +27,7 @@ write "branch differences: "
 write $diff
 
 if($diff.Length -ne 0){
-    write "differences found"
+    write $diff.Length + " differences found"
 }
 
 if($branchMigrations.Length -ne $devMigrations.Length){
