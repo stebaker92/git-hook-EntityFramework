@@ -11,10 +11,9 @@ NAME=$1
 ORIGIN=$2
 BRANCH=$3
 
-try{
-	$ "C:\home\git-hook-entityframework\EntityFrameworkMigrationsFeatureFinish_CheckAllMigrationsRan.ps1"
-}
-catch(){
+{
+	Powershell.exe -NoProfile -executionpolicy remotesigned -File "C:\home\git-hook-entityframework\EntityFrameworkMigrationsFeatureFinish_CheckAllMigrationsRan.ps1"
+} || {
 	# To terminate the git-flow action, return a non-zero exit code.
 	exit 1;
 }
